@@ -1,0 +1,58 @@
+{
+  "name": "array-utils",
+  "version": "1.0.0",
+  "description": "collection of functions i find useful when working with arrays/typed arrays",
+  "main": "./dist/array-utils.min.js",
+  "module": "./dist/array-utils.es.min.js",
+  "types": "./dist/typings/array-utils.d.ts",
+  "files": [
+    "dist/*",
+    "package.json",
+    "package-lock.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npm run clean && npm run lint && rollup -c rollup.config.js --environment BUILD:development",
+    "clean": "rimraf dist",
+    "document": "rimraf ./dist/docs && typedoc --tsconfig tsconfig.json",
+    "lint": "eslint --fix -c .eslintrc --ext .ts ./src/",
+    "release": "npm run clean && npm run lint && npm run test && npm run rollup && npm run uglify && npm run document",
+    "rollup": "rollup -c rollup.config.js --environment BUILD:production",
+    "single-test": "jest -t",
+    "test": "jest",
+    "uglify": "for %f in (dist/array-utils.js dist/array-utils.es.js) do uglifyjs %f -c -m --source-map -o dist/%~nf.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vykaash/array-utils.git"
+  },
+  "keywords": [
+    "array",
+    "utility",
+    "typescript"
+  ],
+  "author": "aaron.mcdonald <> (https://www.linkedin.com/in/aaron-mcdonald-69aa5531/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Vykaash/array-utils/issues"
+  },
+  "homepage": "https://github.com/Vykaash/array-utils#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@types/jest": "^27.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0",
+    "jest": "^27.2.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.56.3",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-jest": "^27.0.5",
+    "typedoc": "^0.22.4",
+    "typescript": "^4.4.3",
+    "uglify-js": "^3.14.2"
+  }
+}

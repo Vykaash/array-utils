@@ -1,0 +1,42 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "allowJs": false,
+        "checkJs": false,
+        "declaration": true,
+        "declarationDir": "dist/typings",
+        "lib": [
+            "esNext",
+            "dom"
+        ],
+        "module": "esNext",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "outDir": "dist",
+        "rootDir": "src",
+        "sourceMap": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "target": "esNext",
+        "typeRoots": [
+            "./node_modules/@types",
+            "./extensions"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "build",
+        "dist",
+        "test",
+    ],
+    "typedocOptions": {
+        "entryPoints": ["./src/array-utils.ts"],
+        "out": "dist/docs",
+        "readme": "none"
+    },
+}
