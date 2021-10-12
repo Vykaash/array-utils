@@ -34,7 +34,7 @@ const target = [0,0,0];
 copy(target, source, 0, 1); // target is now [1,0,0]
 ```
 
-### resizeBuffer(buffer: TypedArray type, newSize: number): new instance of same type as buffer
+### resizeBuffer(buffer: typed array, newSize: number): new instance of same typed array
 Will create a new view(`TypeArray`) and `ArrayBuffer` of size `newSize`. Original contents are copied into
 the new buffer. Can be used to shrink buffers<br>
 ```ts
