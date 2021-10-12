@@ -10,7 +10,7 @@ module.exports = {
 		{
 			file: "./dist/array-utils.js",
 			//global variable name
-			name: "VIKTOR_MATH",
+			name: "AU",
 			format: "umd",
 			globals: {
 				//package name : global var name
