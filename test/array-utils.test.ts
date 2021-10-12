@@ -15,3 +15,10 @@ test('resizeBuffer - shrink', () => {
     expect(resized.length).toBe(2);
     expect(resized.toString()).toEqual('1,2');
 });
+
+test('copy', () => {
+    const a = [1, 2, 3, 4];
+    const b = [0, 0, 0, 0];
+    au.copy(b, a, 0, a.length);
+    expect(b).toEqual(a);
+})

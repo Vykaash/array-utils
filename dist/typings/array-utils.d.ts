@@ -1,4 +1,11 @@
 declare type _TFixedLength<T, N extends number, R extends unknown[]> = R['length'] extends N ? R : _TFixedLength<T, N, [T, ...R]>;
+/**
+ * @example
+ * ```ts
+ * // make an array type equivelent to [number x 16]
+ * type Matrix = TFixedLength<number, 16>;
+ * ```
+ */
 export declare type TFixedLength<T, N extends number> = number extends N ? T[] : _TFixedLength<T, N, []>;
 export declare type TIndexable<T> = {
     [key: number]: T;
@@ -34,14 +41,8 @@ export declare type TIntegerBufferArrays = Uint32Array | Uint32Array | Int32Arra
 /**
  * copies source to target in range of [from, to).
  * does not preform any error checking.
- * @param from - defaults to 0
- * @param to - defaults to source.length
  */
-export declare const copy: <T extends TIndexable<any> & {
-    length: number;
-}, U extends TIndexable<any> & {
-    length: number;
-}>(target: T, source: U, from?: number, to?: number) => T;
+export declare const copy: <T extends TIndexable<any>, U extends TIndexable<any>>(target: T, source: U, from: number, to: number) => T;
 /**
  * returns a new buffer array with length of newSize
  */

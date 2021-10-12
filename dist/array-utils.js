@@ -7,10 +7,8 @@
     /**
      * copies source to target in range of [from, to).
      * does not preform any error checking.
-     * @param from - defaults to 0
-     * @param to - defaults to source.length
      */
-    const copy = (target, source, from = 0, to = source.length) => {
+    const copy = (target, source, from, to) => {
         for (; from < to; ++from) {
             target[from] = source[from];
         }
@@ -26,6 +24,8 @@
         copy(newView, buffer, 0, newSize);
         return newView;
     };
+    const buff = new Float32Array(16);
+    buff.fill(20, 0, 8);
 
     exports.copy = copy;
     exports.resizeBuffer = resizeBuffer;
