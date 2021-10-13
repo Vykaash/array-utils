@@ -85,6 +85,3 @@ export const resizeBuffer = <T extends TBufferArrays>(buffer: T, newSize: number
 
     return newView;
 }
-
-const buff = new Float32Array(16);
-buff.fill(20, 0, 8);

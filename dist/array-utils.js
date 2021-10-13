@@ -24,8 +24,6 @@
         copy(newView, buffer, 0, newSize);
         return newView;
     };
-    const buff = new Float32Array(16);
-    buff.fill(20, 0, 8);
 
     exports.copy = copy;
     exports.resizeBuffer = resizeBuffer;

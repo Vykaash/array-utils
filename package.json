@@ -1,7 +1,7 @@
 {
-  "name": "array-utils",
-  "version": "1.0.0",
-  "description": "collection of functions i find useful when working with arrays/typed arrays",
+  "name": "@vykaash/array-utils",
+  "version": "1.1.1",
+  "description": "small collection of types and functions i find useful when working with arrays/typed arrays",
   "main": "./dist/array-utils.min.js",
   "module": "./dist/array-utils.es.min.js",
   "types": "./dist/typings/array-utils.d.ts",
