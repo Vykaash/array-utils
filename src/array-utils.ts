@@ -51,6 +51,10 @@ export type TFloatBufferArrays = Float64Array
     | Float32Array
     ;
 
+export type TInferIndexableGeneric<T> = T extends TIndexable<infer A> ? A : never;
+
+
+
 export type TIntegerBufferArrays = Uint32Array
     | Uint32Array
     | Int32Array
@@ -63,9 +67,9 @@ export type TIntegerBufferArrays = Uint32Array
 
 /**
  * copies source to target in range of [from, to).
- * does not preform any error checking.
+ * does not validate indices.
  */
-export const copy = <T extends TIndexable<any>, U extends TIndexable<any>>(target: T, source: U, from: number, to: number): T => {
+export const copy = <T extends TIndexable<any>, U extends TIndexable<TInferIndexableGeneric<T>>>(target: T, source: U, from: number, to: number): T => {
     for (; from < to; ++from) {
         target[from] = source[from];
     }
@@ -77,11 +81,37 @@ export const copy = <T extends TIndexable<any>, U extends TIndexable<any>>(targe
  */
 export const resizeBuffer = <T extends TBufferArrays>(buffer: T, newSize: number): T => {
     const viewCnstr = buffer['constructor'] as IBufferArrayConstructor<T>;
-
     const newBuff = new ArrayBuffer(newSize * buffer.BYTES_PER_ELEMENT);
     const newView = new viewCnstr(newBuff);
 
-    copy(newView, buffer, 0, newSize);
+    copy(newView as TIndexable<number>, buffer, 0, Math.min(buffer.length, newSize));
 
     return newView;
+}
+
+/**
+ * does not validate indices.
+ * @returns array with values at a and b swapped
+ */
+export const swap = <T extends TIndexable<any>>(array: T, a: number, b: number): T => {
+    const temp = array[a];
+    array[a] = array[b];
+    array[b] = temp;
+    return array;
+}
+
+/**
+ * a faster remove method than `splice` for UNORDERED arrays. the value at indexToRemove is replaced
+ * with the result of array.pop(). does not validate indices
+ * @returns the removed value or undefined if array is empty (same as default pop behavior)
+ */
+export const swapNPop = <T extends TIndexable<any> & { length: number, pop(): TInferIndexableGeneric<T> | undefined }>(array: T, indexToRemove: number): TInferIndexableGeneric<T> | undefined => {
+    const swapVal = array.pop();
+    if (indexToRemove >= array.length) {
+        return swapVal;
+    }
+
+    const returnVal = array[indexToRemove];
+    array[indexToRemove] = swapVal;
+    return returnVal;
 }
