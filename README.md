@@ -25,21 +25,20 @@ Generic constructor types for `TypeArrays`
 Union types for `TypeArrays`
 
 ### TInferIndexableGeneric
-Used to determine what kind of data an indexable will return if you index into that object
+Used to determine what kind of data an indexable will return if you index into that object. `copy` and `swapNPop` use this to makes sure return/array types match up.
 ```ts
 // examples
 const array = [1,2,3]; //number[]
-const val: TInferIndexableGeneric<array>; // resolves to number
+type t = TInferIndexableGeneric<typeof array>; // resolves to number
 
-const val: TInferIndexableGeneric<[1, '2']>; // resolves to (1 | '2')
+type t = TInferIndexableGeneric<[1, '2']>; // resolves to (1 | '2')
 
 const array = [35, 'hello'];
-const val: TInferIndexableGeneric<array>; // resolves to unknown
+type t = TInferIndexableGeneric<typeof array>; // resolves to (string | number)
 ```
 
 ### copy(target: Indexable, source: Indexable, from: number, to: number): target
-Copies the range [from, to) within source, to target. No error checking is performed, so make sure
-target is large enough to copy into<br>
+Copies the range [from, to) within source, to target. No error checking is performed, so make sure target is large enough to copy into<br>
 ```ts
 const source = [1,2,3];
 const target = [0,0,0];
