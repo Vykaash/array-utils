@@ -53,8 +53,6 @@ export type TFloatBufferArrays = Float64Array
 
 export type TInferIndexableGeneric<T> = T extends TIndexable<infer A> ? A : never;
 
-
-
 export type TIntegerBufferArrays = Uint32Array
     | Uint32Array
     | Int32Array
