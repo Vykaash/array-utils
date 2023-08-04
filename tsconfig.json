@@ -36,7 +36,7 @@
     ],
     "typedocOptions": {
         "entryPoints": ["./src/array-utils.ts"],
-        "out": "dist/docs",
+        "out": "./docs",
         "readme": "none"
     },
 }
