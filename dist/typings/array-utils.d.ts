@@ -39,24 +39,14 @@ export declare type TBufferArrays = Float64Array | Float32Array | Uint32Array | 
 export declare type TFloatBufferArrays = Float64Array | Float32Array;
 export declare type TInferIndexableGeneric<T> = T extends TIndexable<infer A> ? A : never;
 export declare type TIntegerBufferArrays = Uint32Array | Uint32Array | Int32Array | Uint16Array | Int16Array | Uint8Array | Uint8ClampedArray | Int8Array;
-/**
- * copies source to target in range of [from, to).
- * does not validate indices.
- */
 export declare const copy: <T extends TIndexable<any>, U extends TIndexable<TInferIndexableGeneric<T>>>(target: T, source: U, from: number, to: number) => T;
-/**
- * returns a new buffer array with length of newSize
- */
 export declare const resizeBuffer: <T extends TBufferArrays>(buffer: T, newSize: number) => T;
-/**
- * does not validate indices.
- * @returns array with values at a and b swapped
- */
 export declare const swap: <T extends TIndexable<any>>(array: T, a: number, b: number) => T;
 /**
  * a faster remove method than `splice` for UNORDERED arrays. the value at indexToRemove is replaced
- * with the result of array.pop(). does not validate indices
- * @returns the removed value or undefined if array is empty (same as default pop behavior)
+ * with the result of array.pop(). does not validate indices. if indexToRemove is >= array.length then
+ * the pop() result is returned without any swapping.
+ * @returns standard pop results
  */
 export declare const swapNPop: <T extends TIndexable<any> & {
     length: number;
