@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Run your linter here (replace `your-linter-command` with the actual command to run your linter)
+npm run lint
+
+# Check the exit code of the linter command
+if [ $? -ne 0 ]; then
+    echo "Linting failed. Commit aborted."
+    exit 1 # Non-zero exit code prevents the commit
+fi
+
+# If the linting passes, the commit will proceed
+echo "Linting passed. Commit allowed."
+exit 0
