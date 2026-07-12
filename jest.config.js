@@ -3,11 +3,8 @@ module.exports = {
         "./test"
     ],
     transform: {
-        "^.+\\.tsx?$": "ts-jest"
-    },
-    globals: {
-        'ts-jest': {
+        "^.+\\.tsx?$": ["ts-jest", {
             tsconfig: 'tsconfig.test.json'
-        }
+        }]
     },
 }
